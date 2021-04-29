@@ -118,13 +118,8 @@ jobs:
       - name: Yarn install
         run: yarn
 
-      - name: Intergarion test
-        if: matrix.node-version != '14' || matrix.os != 'ubuntu-20.04'
-        run: yarn test:integration
-
-      # Run all tests for Ubuntu + NodeJS v14 only
+      # Run all tests
       - name: Full test suite
-        if: matrix.node-version == '14' && matrix.os == 'ubuntu-20.04'
         run: yarn test
 
   release:
