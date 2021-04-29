@@ -5,8 +5,7 @@ ENV APP_DIR=/opt/front-log-proxy \
     NGINX_DIR=/etc/nginx
 
 ENV NGINX_TEMPLATE="${NGINX_DIR}/conf.d/nginx.template" \
-    NGINX_MODULE="${NGINX_DIR}/module.d" \
-    NGINX_MODULE_TEMPLATE="${NGINX_DIR}/module.d.template"
+    NGINX_MODULE="${NGINX_DIR}/module.d"
 
 # https://github.com/nginxinc/docker-nginx-unprivileged/blob/main/Dockerfile-debian.template#L10
 ARG UID=101
@@ -21,11 +20,10 @@ USER root
 
 COPY --chown="${UGID}" ./src/main/dcr/boot.sh /opt/scripts/
 COPY --chown="${UGID}" ./target/nginx/ ${NGINX_DIR}/
-COPY --chown="${UGID}" ./target/nginx/flp-app.d/ ${APP_DIR}/
+COPY --chown="${UGID}" ./target/njs/ ${APP_DIR}/
 
 RUN mkdir -p /var/cache/nginx && \
-    mkdir -p /var/log/nginx && \
-    mkdir -p /var/lib/nginx
+    mkdir -p /var/log/nginx
 
 RUN chown -R "${UGID}" "${APP_DIR}" && chmod -R 755 "${APP_DIR}" && \
     chown -R "${UGID}" /var/cache/nginx && \
