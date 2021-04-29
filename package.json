@@ -8,7 +8,9 @@
     "build:ngxconf": "cp -r src/main/nginx/ target/nginx/",
     "build:nginx": "yarn build:ngxconf && yarn build:njs",
     "build:docker": "docker build . -f src/main/dcr/Dockerfile",
-    "build": "yarn build:njs && yarn build:docker"
+    "build": "yarn build:nginx",
+    "test:unit": "echo 'test:unit is not configured yet' && exit 0",
+    "test": "yarn test:unit"
   },
   "main": "index.js",
   "repository": "git@github.com:qiwi/flp-njs.git",
