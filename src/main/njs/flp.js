@@ -17,7 +17,7 @@ function logBatch (r) {
   } catch (e) {
     r.error(e)
   }
-  r.return(200, r.requestBody);
+  r.return(200, 'roger that')
 }
 
 function log(r) {
@@ -28,7 +28,7 @@ function log(r) {
   } catch (e) {
     r.error(e)
   }
-  r.return(200, r.requestBody);
+  r.return(200, 'roger that')
 }
 
-export default { log, logBatch };
+export default { log, logBatch }

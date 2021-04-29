@@ -2,6 +2,7 @@ import { add, isWithinInterval, sub } from 'date-fns'
 import { isMobile as _isMobile } from 'is-mobile'
 // import { nanoid } from 'nanoid'
 import platform from 'platform'
+import { LogLevel } from '@qiwi/substrate'
 
 var isMobile = (ua) =>
   _isMobile({ ua, tablet: true })

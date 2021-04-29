@@ -18,6 +18,7 @@
     "test": "yarn test:unit"
   },
   "dependencies": {
+    "@qiwi/substrate": "^1.20.7",
     "date-fns": "^2.21.1",
     "is-mobile": "^3.0.0",
     "nanoid": "^3.1.22",

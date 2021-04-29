@@ -10,9 +10,7 @@ export default {
     exports: 'default'
   },
   plugins: [
-    nodeResolve({
-      dedupe: ['date-fns', 'is-mobile', 'nanoid', 'platform']
-    }),
+    nodeResolve(),
     commonjs(),
     getBabelOutputPlugin({
       presets: ['@babel/preset-env']
