@@ -1,5 +1,5 @@
 server {
-  listen 8081;
+  listen ${SVC_PORT};
 
   location = /buildstamp {
     root ${APP_DIR};
