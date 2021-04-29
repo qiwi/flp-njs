@@ -19,21 +19,11 @@ STOPSIGNAL SIGTERM
 
 USER root
 
-
 COPY --chown=$UGID ./src/main/dcr/boot.sh /opt/scripts/
-COPY --chown=$UGID ./target/nginx ${NGINX_DIR}/
+COPY --chown=$UGID ./target/nginx/ ${NGINX_DIR}/
+RUN apt-get install nginx-module-njs
 
-RUN mkdir -p "${APP_DIR}" && \
-    mkdir -p /var/cache/nginx && \
-    mkdir -p "${NGINX_MODULE}" && \
-    mkdir -p /var/log/nginx && \
-    mkdir -p /var/lib/nginx
-
-RUN chown -R "${UGID}" "${APP_DIR}" && chmod -R 755 "${APP_DIR}" && \
-    chown -R "${UGID}" /var/cache/nginx && \
-    chown -R "${UGID}" /var/log/nginx && \
-    chown -R "${UGID}" "${NGINX_MODULE}" && chmod -R 755 "${NGINX_MODULE}" && \
-    chown -R "${UGID}" /opt/scripts/boot.sh && chmod +x /opt/scripts/boot.sh
+RUN chmod +x /opt/scripts/boot.sh
 
 RUN touch /var/run/nginx.pid && \
     chown -R "${UGID}" /var/run/nginx.pid
