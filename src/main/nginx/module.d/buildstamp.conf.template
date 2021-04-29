@@ -1,0 +1,12 @@
+server {
+  listen 8081;
+
+  location = /buildstamp {
+    root ${APP_DIR};
+    try_files /buildstamp.json =404;
+  }
+
+  location / {
+    return 404;
+  }
+}

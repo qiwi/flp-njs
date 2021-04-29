@@ -1,0 +1,18 @@
+{
+  "name": "flp-njs",
+  "version": "0.0.0",
+  "description": "Nginx-based (njs) backend for front-log-proxy",
+  "scripts": {
+    "prebuild": "mkdir -p target/nginx",
+    "build:njs": "cp -r src/main/njs/ target/nginx/flp-app.d",
+    "build:ngxconf": "cp -r src/main/nginx/ target/nginx/",
+    "build:nginx": "yarn build:ngxconf && yarn build:njs",
+    "build:docker": "docker build . -f src/main/dcr/Dockerfile",
+    "build": "yarn build:njs && yarn build:docker"
+  },
+  "main": "index.js",
+  "repository": "git@github.com:qiwi/flp-njs.git",
+  "author": "Anton Golub <mailbox@antongolub.ru>",
+  "license": "MIT",
+  "private": false
+}
