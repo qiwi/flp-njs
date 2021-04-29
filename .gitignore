@@ -104,6 +104,6 @@ dist
 .tern-port
 
 # Bundles
-target
+target/
+docs/
 buildstamp.json
-docs

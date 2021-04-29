@@ -7,8 +7,6 @@ for template in $NGINX_DIR/**/*.conf.template $NGINX_DIR/*.conf.template; do
     envsubst '$PORT $APP_DIR $LOGS_DIR $ENVIRONMENT_PROFILE_NAME $NGINX_MODULE $ENVIRONMENT_PRODUCTS_NAME $DATACENTER' < $template > $output
     echo "$template -> $output"
 
-    cat $output
-
     rm $template
 done
 
