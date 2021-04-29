@@ -13,7 +13,9 @@
     "build": "yarn build:njs && yarn build:ngxconf && yarn build:docker",
     "build:local": "yarn build:njs && yarn build:ngxconf && yarn build:docker:local",
     "start": "docker run -p 8080:8080 local/flp-njs",
-    "start:b": "yarn build:local && yarn start"
+    "start:b": "yarn build:local && yarn start",
+    "test:unit": "echo 'test:unit is not configured yet' && exit 0",
+    "test": "yarn test:unit"
   },
   "dependencies": {
     "date-fns": "^2.21.1",
