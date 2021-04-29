@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Nginx-based (njs) backend for front-log-proxy",
   "scripts": {
-    "prebuild": "mkdir -p target/nginx",
+    "prebuild": "rm -rf target && mkdir -p target/nginx",
     "build:njs": "cp -r src/main/njs/ target/nginx/flp-app.d",
     "build:ngxconf": "cp -r src/main/nginx/ target/nginx/",
     "build:nginx": "yarn build:ngxconf && yarn build:njs",

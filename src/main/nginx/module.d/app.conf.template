@@ -1,0 +1,17 @@
+js_import ${APP_DIR}/app.js;
+
+server {
+    listen ${PORT};
+    root ${APP_DIR};
+
+    # load routes
+    include /etc/nginx/module.d/healthcheck.conf;
+
+    location / {
+        js_content app.hello;
+    }
+
+    location ~* \.(DS_Store|svn|git|htpasswd|htaccess|bash_history) {
+        return 404;
+    }
+}
