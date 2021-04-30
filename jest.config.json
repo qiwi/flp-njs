@@ -1,0 +1,12 @@
+{
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "<rootDir>/src/main/njs/**/*.js"
+  ],
+  "moduleFileExtensions": [
+    "js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/test/njs/**/*.js"
+  ]
+}
