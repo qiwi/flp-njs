@@ -3,6 +3,7 @@ daemon off;
 pid /run/nginx.pid;
 worker_processes auto;
 worker_rlimit_nofile 65535;
+load_module modules/ngx_http_js_module.so;
 
 events {
 	multi_accept on;
@@ -15,30 +16,13 @@ http {
 
 	# load configs
 	include /etc/nginx/conf.d/log-json.conf;
-
-	# logging
+  # logging
   access_log /var/log/nginx/access.log json-log;
   error_log /var/log/nginx/error.log info;
 
-  js_import flp.js;
+  # Buildstamp
+  # include /etc/nginx/module.d/buildstamp.conf;
 
-  server {
-    listen 8080;
-    include module.d/healthcheck.conf;
-
-    client_body_buffer_size 16k;
-    client_max_body_size 1m;
-
-    location ~* \.(DS_Store|svn|git|htpasswd|htaccess|bash_history) {
-      return 404;
-    }
-
-    location /event {
-      js_content flp.log;
-    }
-
-    location /event-batch {
-      js_content flp.logBatch;
-    }
-  }
+  # Main front-log-proxy app
+  include /etc/nginx/module.d/app.conf;
 }

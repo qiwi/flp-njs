@@ -1,12 +1,12 @@
 FROM nginxinc/nginx-unprivileged
 
-ENV APP_DIR=/opt/front-log-proxy \
+ENV APP_DIR=/opt/app \
     PORT=8080 \
+    SVC_PORT=8081 \
     NGINX_DIR=/etc/nginx
 
 ENV NGINX_TEMPLATE="${NGINX_DIR}/conf.d/nginx.template" \
-    NGINX_MODULE="${NGINX_DIR}/module.d" \
-    NGINX_MODULE_TEMPLATE="${NGINX_DIR}/module.d.template"
+    NGINX_MODULE="${NGINX_DIR}/module.d"
 
 # https://github.com/nginxinc/docker-nginx-unprivileged/blob/main/Dockerfile-debian.template#L10
 ARG UID=101
@@ -19,11 +19,14 @@ STOPSIGNAL SIGTERM
 
 USER root
 
-COPY --chown=$UGID ./src/main/dcr/boot.sh /opt/scripts/
-COPY --chown=$UGID ./target/nginx/ ${NGINX_DIR}/
 RUN apt-get install nginx-module-njs
+COPY --chown="${UGID}" ./src/main/dcr/boot.sh /opt/scripts/
+COPY --chown="${UGID}" ./target/nginx/ ${NGINX_DIR}/
+COPY --chown="${UGID}" ./target/njs/ ${APP_DIR}/
 
-RUN chmod +x /opt/scripts/boot.sh
+RUN mkdir -p /var/cache/nginx && chown -R "${UGID}" /var/cache/nginx && \
+    mkdir -p /var/log/nginx && chown -R "${UGID}" /var/log/nginx && \
+    chmod +x /opt/scripts/boot.sh
 
 RUN touch /var/run/nginx.pid && \
     chown -R "${UGID}" /var/run/nginx.pid
