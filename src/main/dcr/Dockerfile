@@ -15,6 +15,7 @@ ARG UGID="${UID}:${GID}"
 
 WORKDIR $APP_DIR
 EXPOSE $PORT
+EXPOSE $SVC_PORT
 STOPSIGNAL SIGTERM
 
 USER root
@@ -23,6 +24,7 @@ RUN apt-get install nginx-module-njs
 COPY --chown="${UGID}" ./src/main/dcr/boot.sh /opt/scripts/
 COPY --chown="${UGID}" ./target/nginx/ ${NGINX_DIR}/
 COPY --chown="${UGID}" ./target/njs/ ${APP_DIR}/
+COPY --chown="${UGID}" ./target/buildstamp.json ${APP_DIR}/
 
 RUN mkdir -p /var/cache/nginx && chown -R "${UGID}" /var/cache/nginx && \
     mkdir -p /var/log/nginx && chown -R "${UGID}" /var/log/nginx && \

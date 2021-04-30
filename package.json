@@ -10,9 +10,10 @@
     "build:nginx": "yarn build:ngxconf && yarn build:njs",
     "build:docker": "docker build . -f src/main/dcr/Dockerfile",
     "build:docker:local": "docker build -t local/flp-njs . -f src/main/dcr/Dockerfile",
-    "build": "yarn build:njs && yarn build:ngxconf && yarn build:docker",
-    "build:local": "yarn build:njs && yarn build:ngxconf && yarn build:docker:local",
-    "start": "docker run -p 8080:8080 local/flp-njs",
+    "build": "yarn build:stamp && yarn build:njs && yarn build:ngxconf && yarn build:docker",
+    "build:local": "yarn build:stamp && yarn build:njs && yarn build:ngxconf && yarn build:docker:local",
+    "build:stamp": "npx buildstamp --git --out.path target/buildstamp.json",
+    "start": "docker run -p 8080:8080 -p 8081:8081 local/flp-njs",
     "start:b": "yarn build:local && yarn start",
     "test:unit": "echo 'test:unit is not configured yet' && exit 0",
     "test": "yarn test:unit"

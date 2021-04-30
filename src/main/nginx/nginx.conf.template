@@ -20,7 +20,7 @@ http {
   error_log /var/log/nginx/error.log info;
 
   # Buildstamp
-  # include /etc/nginx/module.d/buildstamp.conf;
+  include /etc/nginx/module.d/buildstamp.conf;
 
   # Main front-log-proxy app
   include /etc/nginx/module.d/app.conf;
