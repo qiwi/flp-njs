@@ -6,7 +6,19 @@
   "moduleFileExtensions": [
     "js"
   ],
-  "testMatch": [
-    "<rootDir>/src/test/njs/**/*.js"
+  "projects": [
+    {
+      "displayName": "unit",
+      "testMatch": [
+        "<rootDir>/src/test/njs/**/*.js"
+      ]
+    },
+    {
+      "testEnvironment": "node",
+      "displayName": "integration",
+      "testMatch": [
+        "<rootDir>/src/test/integration/**/*.js"
+      ]
+    }
   ]
 }
