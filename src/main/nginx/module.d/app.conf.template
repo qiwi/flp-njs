@@ -1,4 +1,4 @@
-js_import ${APP_DIR}/app.js;
+js_import ${APP_DIR}/flp.js;
 
 server {
     listen ${PORT};
@@ -7,8 +7,12 @@ server {
     # load routes
     include /etc/nginx/module.d/healthcheck.conf;
 
-    location / {
-        js_content app.hello;
+    location /event {
+        js_content flp.log;
+    }
+
+    location /event-batch {
+        js_content flp.logBatch;
     }
 
     location ~* \.(DS_Store|svn|git|htpasswd|htaccess|bash_history) {

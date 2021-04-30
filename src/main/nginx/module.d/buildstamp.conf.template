@@ -3,6 +3,7 @@ server {
 
   location = /buildstamp {
     root ${APP_DIR};
+    default_type application/json;
     try_files /buildstamp.json =404;
   }
 
