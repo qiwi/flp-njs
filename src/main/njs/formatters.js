@@ -4,12 +4,12 @@ import { isMobile as _isMobile } from 'is-mobile'
 import platform from 'platform'
 import { LogLevel } from '@qiwi/substrate'
 
-var isMobile = (ua) =>
+const isMobile = (ua) =>
   _isMobile({ ua, tablet: true })
 
-var getDeviceInfo = (userAgent) => {
-  var parsedData = userAgent ? platform.parse(userAgent) : {}
-  var { name, version, layout, product, manufacturer, os } = parsedData
+const getDeviceInfo = (userAgent) => {
+  const parsedData = userAgent ? platform.parse(userAgent) : {}
+  const { name, version, layout, product, manufacturer, os } = parsedData
   return {
     browser: {
       name,
@@ -25,8 +25,8 @@ var getDeviceInfo = (userAgent) => {
   }
 }
 
-var isTimestampActual = (timestamp) => {
-  var currentDate = new Date()
+const isTimestampActual = (timestamp) => {
+  const currentDate = new Date()
   return isWithinInterval(new Date(timestamp), {
     start: sub(currentDate, { days: 7 }),
     end: add(currentDate, { minutes: 10 }),
@@ -34,12 +34,12 @@ var isTimestampActual = (timestamp) => {
 }
 
 export function formatEvent(event, origin) {
-  var timestamp = isTimestampActual(event.timestamp) && event.timestamp
+  const timestamp = isTimestampActual(event.timestamp) && event.timestamp
   event.meta.deviceInfo = event.meta.deviceInfo
     ? event.meta.deviceInfo
     : getDeviceInfo(event.meta.userAgent)
 
-  var meta = {
+  const meta = {
     event,
     origin,
     timestamp,
@@ -52,8 +52,8 @@ export function formatEvent(event, origin) {
 }
 
 export function formatEventBatch(event, { host, ip }) {
-  // var batchId = nanoid()
-  var batchSize = event.events.length
+  // const batchId = nanoid()
+  const batchSize = event.events.length
 
   return event.events.map((evt, index) =>
     formatEvent(evt, {
