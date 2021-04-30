@@ -16,6 +16,8 @@ function logBatch (r) {
     })
   } catch (e) {
     r.error(e)
+    r.return(400, 'Event parsing error: ' + e.message)
+    return
   }
   r.return(200, 'roger that')
 }
@@ -27,8 +29,10 @@ function log(r) {
     r.log('\n' + JSON.stringify(formattedEvent))
   } catch (e) {
     r.error(e)
+    r.return(400, 'Event parsing error: ' + e.message)
+    return
   }
   r.return(200, 'roger that')
 }
 
-export default { log, logBatch }
+export default { log, logBatch, getHostAndIp }
