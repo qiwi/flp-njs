@@ -5,7 +5,7 @@ import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 export default {
   input: 'src/main/njs/flp.js',
   output: {
-    dir: 'target/nginx',
+    dir: 'target/njs',
     format: 'es',
     exports: 'default'
   },
