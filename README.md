@@ -1,11 +1,13 @@
 # flp-njs
-Nginx-based (njs) backend for front-log-proxy.
-Prints all logged events to stdout.
+Docker-contained nginx-based ([njs](http://nginx.org/en/docs/njs/index.html)) backend for [event-transmitter](https://github.com/qiwi/event-transmitter).
+Prints all logged events to stdout.  
+
 ## Usage
 ```bash
 docker pull docker.pkg.github.com/qiwi/flp-njs/flp-njs:latest
 docker run -p 8080:8080 -p 8081:8081 flp-njs
 ```
+
 ## REST API
 ### POST /event
 Log event to stdout. Be careful with personal data!
@@ -95,8 +97,17 @@ Returns json:
     "date": "2021-04-30T11:32:04.437Z"
 }
 ```
-## Local usage
-```shell
-yarn start:b
-```
-Builds and runs application
+## Development & local usage
+| Cmd | Description |
+|---|---|
+| `yarn` | Fetch deps |
+| `yarn build` | Build njs, nginx *.conf and dcr container
+| `yarn build:local` | As prev, but adds `local/flp-njs` image tag
+| `yarn test` | Run linter & unit tests
+| `yarn test:integration` | Test `local/flp-njs` image
+| `yarn start:b` | Build and run app container |
+| `yarn start` | Run container |
+| `yarn stop` | Shut down container |
+
+## License
+[MIT](./LICENSE)
