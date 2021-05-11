@@ -77,15 +77,15 @@ jobs:
       - name: Unit test only
         run: yarn test:unit
 
-#      - name: Update coverage
-#        if: github.ref == 'refs/heads/master'
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: artifact-${{ github.run_id }}
-#          retention-days: 1
-#          path: |
-#            coverage
-#            .nyc_output
+      - name: Update coverage
+        if: github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-${{ github.run_id }}
+          retention-days: 1
+          path: |
+            coverage
+            .nyc_output
 
   # Full tests for PR
   test_pr:
@@ -100,7 +100,7 @@ jobs:
     needs: build
 
     steps:
-      - name: Checkuout
+      - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
