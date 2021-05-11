@@ -6,7 +6,7 @@
     "clear": "rm -rf target",
     "prebuild": "yarn clear && mkdir -p target/nginx",
     "build:njs": "rollup -c",
-    "build:ngxconf": "cp -r src/main/nginx/ target/nginx/",
+    "build:ngxconf": "cp -r src/main/nginx/. target/nginx/",
     "build:nginx": "yarn build:ngxconf && yarn build:njs",
     "build:docker": "docker build . -f src/main/dcr/Dockerfile",
     "build:docker:local": "docker build -t local/flp-njs . -f src/main/dcr/Dockerfile",
