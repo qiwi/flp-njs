@@ -1,6 +1,6 @@
 import { add, isWithinInterval, sub } from 'date-fns'
 import { isMobile as _isMobile } from 'is-mobile'
-// import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid/non-secure'
 import platform from 'platform'
 import { LogLevel } from '@qiwi/substrate'
 
@@ -52,13 +52,12 @@ export function formatEvent(event, origin) {
 }
 
 export function formatEventBatch(event, { host, ip }) {
-  // const batchId = nanoid()
+  const batchId = nanoid()
   const batchSize = event.events.length
 
   return event.events.map((evt, index) =>
     formatEvent(evt, {
-      // TODO: add real batchId
-      batch: { pos: index, id: 42, size: batchSize },
+      batch: { pos: index, id: batchId, size: batchSize },
       host,
       ip,
     }),
