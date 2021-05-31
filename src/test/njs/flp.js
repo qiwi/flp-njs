@@ -3,7 +3,7 @@ import eventBody from '../resources/event.json'
 
 const { getHostAndIp, log, logBatch } = flp
 
-const loggedEvent = '\n{"meta":{"event":{"message":"string1","tags":["string"],"code":"string","level":"error","meta":{"appName":"string","appHost":"string","appVersion":"string","appNamespace":"string","appConfig":{},"deviceInfo":{},"userAgent":"string","envProfile":"ci","timestamp":"string"},"details":{}},"origin":{"ip":"127.0.0.1","host":"localhost:8080"},"timestamp":false},"input":["string1"],"level":"error"}'
+const loggedEvent = '\n{"meta":{"event":{"message":"string1","tags":["string"],"code":"string","level":"error","meta":{"appName":"string","appHost":"string","appVersion":"string","appNamespace":"string","appConfig":{},"deviceInfo":{},"userAgent":"string","envProfile":"ci","timestamp":"string"},"details":{}},"origin":{"ip":"127.0.0.1","host":"localhost:8080"}},"input":["string1"],"level":"error"}'
 
 describe('getHostAndIp', () => {
   it('return X-Forwarded-For as ip and host', () => {
