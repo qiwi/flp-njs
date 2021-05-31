@@ -34,7 +34,7 @@ const isTimestampActual = (timestamp) => {
 }
 
 export function formatEvent(event, origin) {
-  const timestamp = isTimestampActual(event.timestamp) && event.timestamp
+  const timestamp = isTimestampActual(event.timestamp) ? event.timestamp : undefined
   if (event.meta) {
     const { deviceInfo, userAgent } = event.meta
     event.meta.deviceInfo = deviceInfo || userAgent && getDeviceInfo(userAgent)
