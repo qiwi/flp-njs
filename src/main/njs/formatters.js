@@ -16,7 +16,7 @@ const getDeviceInfo = (userAgent) => {
       version,
       layout,
     },
-    isMobile: isMobile(userAgent || window.navigator.userAgent),
+    isMobile: userAgent && isMobile(userAgent),
     model: {
       name: product,
       manufacturer,
@@ -34,10 +34,11 @@ const isTimestampActual = (timestamp) => {
 }
 
 export function formatEvent(event, origin) {
-  const timestamp = isTimestampActual(event.timestamp) && event.timestamp
-  event.meta.deviceInfo = event.meta.deviceInfo
-    ? event.meta.deviceInfo
-    : getDeviceInfo(event.meta.userAgent)
+  const timestamp = isTimestampActual(event.timestamp) ? event.timestamp : undefined
+  if (event.meta) {
+    const { deviceInfo, userAgent } = event.meta
+    event.meta.deviceInfo = deviceInfo || userAgent && getDeviceInfo(userAgent)
+  }
 
   const meta = {
     event,
